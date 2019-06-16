@@ -1,0 +1,125 @@
+! IOS XE base configuration (CSR1K)
+!
+service timestamps debug datetime msec
+service timestamps log datetime msec
+!
+hostname {{ hostname }} 
+!
+banner motd ^
+************
+* netfu.io *
+************
+^
+vrf definition MGMT-VRF
+ !
+ address-family ipv4
+ exit-address-family
+!
+aaa new-model
+aaa group server tacacs+ TACPLUS
+{% for server in services.tacacs.servers %}
+ server-private {{ server.ipv4 }} key {{ server.key }}
+ server-private {{ server.ipv4 }} single-connection 
+ server-private {{ server.ipv4 }} port {{ server.port }} 
+ ip vrf forwarding {{ server.vrf }}
+!
+{% endfor %}
+aaa authentication login default group TACPLUS local
+aaa authorization exec default group TACPLUS if-authenticated
+aaa accounting exec default start-stop group TACPLUS
+!
+no ip domain lookup
+ip domain name netfu.io
+!
+{% for interface in interfaces %}
+interface {{ interface.name }}
+ {% if interface.vrf is defined %}
+ vrf forwarding {{ interface.vrf }}
+ {% endif %}
+ ip address {{ interface.ipv4 | address }} {{ interface.ipv4 | netmask }}
+ {% if interface.description is defined %}
+ description {{ interface.description }}
+ {% endif %}
+ no shutdown
+{% endfor %}
+!
+{% if protocols is defined %}
+ {% if protocols.isis is defined %}
+  {% for instance in protocols.isis %}
+router isis {{ instance.name }}
+ net {{ instance.net }}
+ is-type level-2-only
+ metric-style wide
+ log-adjacency-changes
+   {% if protocols.ldp is defined %}
+ mpls ldp autoconfig
+ mpls ldp sync
+   {% endif %}
+   {% for interface in instance.interfaces %}
+    {% if interface.passive is defined %}
+     {% if interface.passive %}
+  passive-interface {{ interface.name }}
+     {% endif %}
+    {% endif %}
+   {% endfor %}
+!
+   {% for interface in instance.interfaces %}
+interface {{ interface.name }}
+ ip router isis {{ instance.name }}
+    {% if interface.type is defined %}
+ isis network {{ interface.type }}
+    {% endif %}
+    {% if interface.suppressed is defined %}
+     {% if interface.suppressed %}
+ no isis advertise prefix
+     {% endif %}
+    {% endif %}
+   {% endfor %}
+  {% endfor %}
+ {% endif %}
+ {% if protocols.ospf is defined %}
+  {% for instance in protocols.ospf %}
+router ospf {{ instance.process_id }}
+ router-id {{ instance.router_id }}
+ log-adjacency-changes
+   {% if protocols.ldp is defined %}
+ mpls ldp autoconfig
+ mpls ldp sync
+   {% endif %}
+   {% for area in instance.areas %}
+    {% for interface in area.interfaces %}
+     {% if interface.passive is defined %}
+      {% if interface.passive %}
+  passive-interface {{ interface.name }}
+      {% endif %}
+     {% endif %}
+    {% endfor %}
+   {% endfor %}
+! 
+   {% for area in instance.areas %}
+    {% for interface in area.interfaces %}
+interface {{ interface.name }}
+ ip ospf {{ instance.process_id }} area {{ area.id }}
+     {% if interface.type is defined %}
+ ip ospf network {{ interface.type }}
+     {% endif %}
+    {% endfor %}
+   {% endfor %}
+  {% endfor %}
+ {% endif %}
+{% endif %}
+!
+no ip http server
+no ip http secure-server
+ip route vrf MGMT-VRF 0.0.0.0 0.0.0.0 10.0.30.1
+ip ssh source-interface GigabitEthernet10
+ip ssh version 2
+ip scp server enable
+!
+line con 0
+ stopbits 1
+line vty 0 15
+ login local
+ transport input ssh
+!
+end
