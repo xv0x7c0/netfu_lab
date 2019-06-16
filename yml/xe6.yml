@@ -1,0 +1,35 @@
+hostname: XE6
+
+interfaces:
+  - name: Gi10
+    vrf:  MGMT-VRF  
+    ipv4: 10.0.30.16/24
+  - name: Loopback0
+    ipv4: 6.6.6.6/32
+  - name: Gi1
+    ipv4: 10.6.106.6/24
+    description: XR6:Gi0/0/0/1
+  - name: Gi2
+    ipv4: 10.5.6.6/24
+    description: XE5:Gi2
+  - name: Gi3
+    ipv4: 10.6.8.6/24
+    description: XE8:Gi3
+
+protocols:
+  ospf:
+    - process_id: 1
+      router_id: 6.6.6.6
+      areas:
+        - id: 0
+          interfaces:
+            - name: Loopback0
+              passive: true
+            - name: Gi1
+              type: point-to-point
+            - name: Gi2
+              type: point-to-point
+            - name: Gi3
+              type: point-to-point
+  ldp:
+    router_id: 6.6.6.6

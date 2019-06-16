@@ -1,0 +1,7 @@
+services:
+  tacacs:
+    servers:
+      - ipv4: 10.0.30.2
+        port: 49
+        vrf:  MGMT-VRF
+        key:  TACPLUS

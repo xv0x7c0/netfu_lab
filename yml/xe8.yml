@@ -1,0 +1,35 @@
+hostname: XE8
+
+interfaces:
+  - name: Gi10
+    vrf:  MGMT-VRF  
+    ipv4: 10.0.30.18/24
+  - name: Loopback0
+    ipv4: 8.8.8.8/32
+  - name: Gi1
+    ipv4: 10.8.108.8/24
+    description: XR8:Gi0/0/0/1
+  - name: Gi3
+    ipv4: 10.6.8.8/24
+    description: XE6:Gi3
+  - name: Gi4
+    ipv4: 10.8.110.8/24
+    description: XR10:Gi0/0/0/3
+  - name: Gi5
+    ipv4: 10.8.10.8/24
+    description: XE10:Gi4
+protocols:
+  ospf:
+    - process_id: 1
+      router_id: 8.8.8.8
+      areas:
+        - id: 0
+          interfaces:
+            - name: Loopback0
+              passive: true
+            - name: Gi1
+              type: point-to-point
+            - name: Gi3
+              type: point-to-point
+  ldp:
+    router_id: 8.8.8.8

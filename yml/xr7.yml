@@ -1,0 +1,37 @@
+hostname: XR7
+
+interfaces:
+  - name: MgmtEth0/0/CPU0/0
+    vrf:  MGMT-VRF  
+    ipv4: 10.0.30.107/24
+  - name: Loopback0
+    ipv4: 107.107.107.107/32
+  - name: Gi0/0/0/1
+    ipv4: 10.7.107.107/24
+    description: XE7:Gi1
+  - name: Gi0/0/0/3
+    ipv4: 10.105.107.107/24
+    description: XR5:Gi0/0/0/3
+  - name: Gi0/0/0/4
+    ipv4: 10.107.109.107/24
+    description: XR9:Gi0/0/0/2
+  - name: Gi0/0/0/5
+    ipv4: 10.9.107.107/24
+    description: XE9:Gi3
+
+protocols:
+  ospf:
+    - name: CORE
+      router_id: 107.107.107.107
+      areas:
+        - id: 0
+          interfaces:
+            - name: Loopback0
+              passive: true
+            - name: Gi0/0/0/1
+              type: point-to-point
+            - name: Gi0/0/0/3
+              type: point-to-point
+  ldp:
+    router_id: 107.107.107.107
+

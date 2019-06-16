@@ -1,0 +1,36 @@
+hostname: XR1
+
+interfaces:
+  - name: MgmtEth0/0/CPU0/0
+    vrf:  MGMT-VRF  
+    ipv4: 10.0.30.101/24
+  - name: Loopback0
+    ipv4: 101.101.101.101/32
+  - name: Gi0/0/0/1
+    ipv4: 10.1.101.101/24
+    description: XE1:Gi1
+  - name: Gi0/0/0/2
+    ipv4: 10.101.102.101/24
+    description: XR2:Gi0/0/0/2
+  - name: Gi0/0/0/3
+    ipv4: 10.101.103.101/24
+    description: XR3:Gi0/0/0/3
+
+protocols:
+  isis:
+    - name: CORE
+      net: 49.0001.0000.0000.0101.00
+      interfaces:
+        - name: Loopback0
+          passive: true
+        - name: Gi0/0/0/1
+          type: point-to-point
+          suppressed: true
+        - name: Gi0/0/0/2
+          type: point-to-point
+          suppressed: true
+        - name: Gi0/0/0/3
+          type: point-to-point
+          suppressed: true
+  ldp:
+    router_id: 101.101.101.101

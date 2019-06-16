@@ -1,0 +1,35 @@
+hostname: XE4
+
+interfaces:
+  - name: Gi10
+    vrf:  MGMT-VRF  
+    ipv4: 10.0.30.14/24
+  - name: Loopback0
+    ipv4: 4.4.4.4/32
+  - name: Gi1
+    ipv4: 10.4.104.4/24
+    description: XR4:Gi0/0/0/1
+  - name: Gi3
+    ipv4: 10.2.4.4/24
+    description: XE2:Gi3
+  - name: Gi4
+    ipv4: 10.4.110.4/24
+    description: XR10:Gi0/0/0/1
+  - name: Gi5
+    ipv4: 10.4.10.4/24
+    description: XE10:Gi2
+protocols:
+  isis:
+    - name: CORE
+      net: 49.0001.0000.0000.0004.00
+      interfaces:
+        - name: Loopback0
+          passive: true
+        - name: Gi1
+          type: point-to-point
+          suppressed: true
+        - name: Gi3
+          type: point-to-point
+          suppressed: true
+  ldp:
+    router_id: 4.4.4.4
