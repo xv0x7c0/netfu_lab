@@ -15,6 +15,8 @@ vrf definition MGMT-VRF
  address-family ipv4
  exit-address-family
 !
+enable password Cisco
+!
 aaa new-model
 aaa group server tacacs+ TACPLUS
 {% for server in services.tacacs.servers %}
