@@ -3,7 +3,7 @@ hostname: XE8
 interfaces:
   - name: Gi10
     vrf:  MGMT-VRF  
-    ipv4: 10.0.30.18/24
+    ipv4: 10.0.30.8/24
   - name: Loopback0
     ipv4: 8.8.8.8/32
   - name: Gi1

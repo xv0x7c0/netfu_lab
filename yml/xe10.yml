@@ -3,7 +3,7 @@ hostname: XE10
 interfaces:
   - name: Gi10
     vrf:  MGMT-VRF  
-    ipv4: 10.0.30.20/24
+    ipv4: 10.0.30.10/24
   - name: Loopback0
     ipv4: 10.10.10.10/32
   - name: Gi1
