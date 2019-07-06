@@ -9,15 +9,19 @@ interfaces:
   - name: Gi1
     ipv4: 10.4.104.4/24
     description: XR4:Gi0/0/0/1
+  - name: Gi2
+    ipv4: 10.4.10.4/24
+    description: XE10:Gi1
   - name: Gi3
     ipv4: 10.2.4.4/24
     description: XE2:Gi3
   - name: Gi4
     ipv4: 10.4.110.4/24
-    description: XR10:Gi0/0/0/1
+    description: XR10:Gi0/0/0/3
   - name: Gi5
-    ipv4: 10.4.10.4/24
-    description: XE10:Gi2
+    ipv4: 10.4.102.4/24
+    description: XR2:Gi0/0/0/5
+
 protocols:
   isis:
     - name: CORE
@@ -29,6 +33,9 @@ protocols:
           type: point-to-point
           suppressed: true
         - name: Gi3
+          type: point-to-point
+          suppressed: true
+        - name: Gi5
           type: point-to-point
           suppressed: true
   ldp:

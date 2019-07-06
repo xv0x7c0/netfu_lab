@@ -9,15 +9,18 @@ interfaces:
   - name: Gi1
     ipv4: 10.7.107.7/24
     description: XR7:Gi0/0/0/1
+  - name: Gi2
+    ipv4: 10.7.9.7/24
+    description: XE9:Gi2
   - name: Gi3
     ipv4: 10.5.7.7/24
     description: XE5:Gi3
   - name: Gi4
     ipv4: 10.7.109.7/24
-    description: XR9:Gi0/0/0/3
+    description: XR9:Gi4
   - name: Gi5
-    ipv4: 10.7.9.7/24
-    description: XE9:Gi4
+    ipv4: 10.7.105.7/24
+    description: XR5:Gi0/0/0/5
 
 protocols:
   ospf:
@@ -31,6 +34,8 @@ protocols:
             - name: Gi1
               type: point-to-point
             - name: Gi3
+              type: point-to-point
+            - name: Gi5
               type: point-to-point
   ldp:
     router_id: 7.7.7.7

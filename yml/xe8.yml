@@ -14,10 +14,11 @@ interfaces:
     description: XE6:Gi3
   - name: Gi4
     ipv4: 10.8.110.8/24
-    description: XR10:Gi0/0/0/3
+    description: XR10:Gi0/0/0/4
   - name: Gi5
-    ipv4: 10.8.10.8/24
-    description: XE10:Gi4
+    ipv4: 10.8.106.8/24
+    description: XR6:Gi0/0/0/5
+
 protocols:
   ospf:
     - process_id: 1
@@ -30,6 +31,8 @@ protocols:
             - name: Gi1
               type: point-to-point
             - name: Gi3
+              type: point-to-point
+            - name: Gi5
               type: point-to-point
   ldp:
     router_id: 8.8.8.8

@@ -18,6 +18,9 @@ interfaces:
   - name: Gi4
     ipv4: 10.1.102.1/24
     description: XR2:Gi0/0/0/4
+  - name: Gi5
+    ipv4: 10.1.103.1/24
+    description: XR3:Gi0/0/0/5
 
 protocols:
   isis:
@@ -36,6 +39,9 @@ protocols:
           type: point-to-point
           suppressed: true
         - name: Gi4
+          type: point-to-point
+          suppressed: true
+        - name: Gi5
           type: point-to-point
           suppressed: true
   ldp:

@@ -15,9 +15,9 @@ interfaces:
   - name: Gi0/0/0/3
     ipv4: 10.106.108.106/24
     description: XR8:Gi0/0/0/3
-  - name: Gi0/0/0/4
-    ipv4: 10.5.106.106/24
-    description: XE5:Gi4
+  - name: Gi0/0/0/5
+    ipv4: 10.8.106.106/24
+    description: XE8:Gi5
 
 protocols:
   ospf:
@@ -35,6 +35,8 @@ protocols:
             - name: Gi0/0/0/3
               type: point-to-point
             - name: Gi0/0/0/4
+              type: point-to-point
+            - name: Gi0/0/0/5
               type: point-to-point
   ldp:
     router_id: 106.106.106.106
