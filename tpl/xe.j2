@@ -20,9 +20,7 @@ enable password Cisco
 aaa new-model
 aaa group server tacacs+ TACPLUS
 {% for server in services.tacacs.servers %}
- server-private {{ server.ipv4 }} key {{ server.key }}
- server-private {{ server.ipv4 }} single-connection 
- server-private {{ server.ipv4 }} port {{ server.port }} 
+ server-private {{ server.ipv4 }} single-connection port {{ server.port }} key {{ server.key }}
  ip vrf forwarding {{ server.vrf }}
 !
 {% endfor %}
