@@ -47,9 +47,11 @@ interface {{ interface.name }}
  {% if interface.vrf is defined %}
  vrf {{ interface.vrf }}
  {% endif %}
+ no ipv4 address
  {% if interface.ipv4 is defined %}
  ipv4 address {{ interface.ipv4 }}
  {% endif %}
+ no ipv6 address
  {% if interface.ipv6 is defined %}
  ipv6 address {{ interface.ipv6 }}
  {% endif %}
