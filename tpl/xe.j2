@@ -18,16 +18,18 @@ vrf definition MGMT-VRF
 username Cisco privilege 15 password 0 Cisco
 enable password Cisco
 !
+{% if services.tacacs is defined %}
 aaa new-model
 aaa group server tacacs+ TACPLUS-GRP
-{% for server in services.tacacs.servers %}
+ {% for server in services.tacacs.servers %}
  server-private {{ server.ipv4 }} single-connection port {{ server.port }} key {{ server.key }}
  ip vrf forwarding {{ server.vrf }}
 !
-{% endfor %}
+ {% endfor %}
 aaa authentication login default group TACPLUS-GRP local
 aaa authorization exec default group TACPLUS-GRP if-authenticated
 aaa accounting exec default start-stop group TACPLUS-GRP
+{% endif %}
 !
 no ip domain lookup
 ip domain name netfu.io
