@@ -16,15 +16,10 @@ vrf MGMT-VRF
  !
 !
 {% if services.tacacs is defined %}
- {% for server in services.tacacs.servers %}
-tacacs-server host {{ server.ipv4 }} port {{ server.port }}
- key 0 {{ server.key }}
- single-connection
-!
- {% endfor %}
 aaa group server tacacs+ TACPLUS-GRP
  {% for server in services.tacacs.servers %}
- server {{ server.ipv4 }}
+ server-private {{ server.ipv4 }} port {{ server.port }}
+ key {{ server.key }}
  vrf {{ server.vrf }}
  {% endfor %}
 {% endif %}
