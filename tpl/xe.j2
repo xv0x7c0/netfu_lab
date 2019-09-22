@@ -32,6 +32,9 @@ aaa authorization commands 0 default group TACPLUS-GRP local if-authenticated
 aaa authorization commands 1 default group TACPLUS-GRP local if-authenticated
 aaa authorization commands 15 default group TACPLUS-GRP local if-authenticated
 aaa accounting exec default start-stop group TACPLUS-GRP
+aaa accounting commands 0 default start-stop group TACPLUS-GRP
+aaa accounting commands 1 default start-stop group TACPLUS-GRP
+aaa accounting commands 15 default start-stop group TACPLUS-GRP
 {% endif %}
 !
 no ip domain lookup
