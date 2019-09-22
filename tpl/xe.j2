@@ -28,6 +28,9 @@ aaa group server tacacs+ TACPLUS-GRP
  {% endfor %}
 aaa authentication login default group TACPLUS-GRP local-case
 aaa authorization exec default group TACPLUS-GRP local if-authenticated
+aaa authorization commands 0 default group TACPLUS-GRP local if-authenticated
+aaa authorization commands 1 default group TACPLUS-GRP local if-authenticated
+aaa authorization commands 15 default group TACPLUS-GRP local if-authenticated
 aaa accounting exec default start-stop group TACPLUS-GRP
 {% endif %}
 !
