@@ -22,16 +22,16 @@ tacacs-server host {{ server.ipv4 }} port {{ server.port }}
  single-connection
 !
  {% endfor %}
-aaa group server tacacs+ TACPLUS
+aaa group server tacacs+ TACPLUS-GRP
  {% for server in services.tacacs.servers %}
  server {{ server.ipv4 }}
  vrf {{ server.vrf }}
  {% endfor %}
 {% endif %}
 !
-aaa authentication login default local group TACPLUS
-aaa authorization exec default local group TACPLUS
-aaa accounting commands default start-stop group TACPLUS
+aaa authentication login default local group TACPLUS-GRP
+aaa authorization exec default local group TACPLUS-GRP
+aaa accounting commands default start-stop group TACPLUS-GRP
 !
 line default
  exec-timeout 0 0

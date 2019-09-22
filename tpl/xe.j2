@@ -19,15 +19,15 @@ username Cisco privilege 15 password 0 Cisco
 enable password Cisco
 !
 aaa new-model
-aaa group server tacacs+ TACPLUS
+aaa group server tacacs+ TACPLUS-GRP
 {% for server in services.tacacs.servers %}
  server-private {{ server.ipv4 }} single-connection port {{ server.port }} key {{ server.key }}
  ip vrf forwarding {{ server.vrf }}
 !
 {% endfor %}
-aaa authentication login default group TACPLUS local
-aaa authorization exec default group TACPLUS if-authenticated
-aaa accounting exec default start-stop group TACPLUS
+aaa authentication login default group TACPLUS-GRP local
+aaa authorization exec default group TACPLUS-GRP if-authenticated
+aaa accounting exec default start-stop group TACPLUS-GRP
 !
 no ip domain lookup
 ip domain name netfu.io
