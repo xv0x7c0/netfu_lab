@@ -27,6 +27,7 @@ aaa group server tacacs+ TACPLUS-GRP
 aaa authentication login default local group TACPLUS-GRP
 aaa authorization exec default local group TACPLUS-GRP
 aaa authorization commands default group TACPLUS-GRP
+aaa accounting exec default start-stop group TACPLUS-GRP
 aaa accounting commands default start-stop group TACPLUS-GRP
 !
 line default
