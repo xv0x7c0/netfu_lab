@@ -34,7 +34,7 @@ line default
  exec-timeout 0 0
  transport input telnet ssh
 !
-vty-pool default 0 15 line-template default
+vty-pool default 0 4 line-template default
 !
 {% for interface in interfaces %}
 interface {{ interface.name }}

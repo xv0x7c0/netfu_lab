@@ -135,8 +135,10 @@ ip scp server enable
 !
 line con 0
  stopbits 1
-line vty 0 15
+line vty 0 4
  exec-timeout 0 0
  transport input ssh
+line vty 5 15
+ transport input none
 !
 end
