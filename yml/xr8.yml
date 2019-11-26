@@ -6,20 +6,26 @@ interfaces:
     ipv4: 10.0.30.108/24
   - name: Loopback0
     ipv4: 108.108.108.108/32
+    ipv6: 2001:108:108:108::108/128
   - name: Gi0/0/0/1
     ipv4: 10.8.108.108/24
+    ipv6: 2001:10:8:108::108/64
     description: XE8:Gi1
   - name: Gi0/0/0/2
     ipv4: 10.108.110.108/24
+    ipv6: 2001:10:108:110::108/64
     description: XR10:Gi0/0/0/2
   - name: Gi0/0/0/3
     ipv4: 10.106.108.108/24
+    ipv6: 2001:10:106:108::108/64
     description: XR6:Gi0/0/0/3
   - name: Gi0/0/0/4
     ipv4: 10.10.108.108/24
+    ipv6: 2001:10:10:108::108/64
     description: XE10:Gi4
   - name: Gi0/0/0/5
     ipv4: 10.6.108.108/24
+    ipv6: 2001:10:6:108::108/64
     description: XE6:Gi5
 
 protocols:
