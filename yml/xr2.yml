@@ -14,7 +14,7 @@ interfaces:
   - name: Gi0/0/0/2
     ipv4: 10.101.102.102/24
     ipv6: 2001:10:101:102::102/64
-    description: XR2:Gi0/0/0/2
+    description: XR1:Gi0/0/0/2
   - name: Gi0/0/0/3
     ipv4: 10.102.104.102/24
     ipv6: 2001:10:102:104::102/64
